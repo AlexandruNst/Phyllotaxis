@@ -3,6 +3,8 @@ let r;
 let n = 0;
 let c = 8;
 
+//colour branch
+
 function setup() {
     createCanvas(900, 900);
     background(51);
