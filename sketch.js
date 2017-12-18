@@ -1,7 +1,7 @@
 let phi;
 let r;
 let n = 0;
-let c = 4;
+let c = 8;
 
 function setup() {
     createCanvas(900, 900);
