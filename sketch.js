@@ -18,7 +18,9 @@ let reI = false;
 let grI = true;
 let blI = true;
 
+
 function setup() {
+    angleMode(DEGREES);
     createCanvas(900, 900);
     background(51);
 }
@@ -29,73 +31,51 @@ function draw() {
     phi = n * 137.5;
     r = c * sqrt(n);
 
+    // Convert polar to cartesian
     let x = r * cos(phi);
     let y = r * sin(phi);
 
     stroke(0);
-
     fill(re, gr, bl);
     ellipse(x, y, 10, 10);
 
     n++;
 
-    if (re == 255) {
+    // New colour values
+    reCol = newCol(re, reI);
+    re = reCol[0];
+    reI = reCol[1];
 
-        reI = false;
-        re--;
+    grCol = newCol(gr, grI);
+    gr = grCol[0];
+    grI = grCol[1];
 
-    } else if (re == 0) {
+    blCol = newCol(bl, blI);
+    bl = blCol[0];
+    blI = blCol[1];
+}
 
-        reI = true;
-        re++;
+function newCol(col, inc) {
 
-    } else if (re < 255 && reI == true) {
+    if (col == 255) {
 
-        re++;
+        inc = false;
+        col--;
 
-    } else if (re > 0 && reI == false) {
+    } else if (col == 0) {
 
-        re--;
+        inc = true;
+        col++;
 
-    }
+    } else if (col < 255 && inc == true) {
 
-    if (gr == 255) {
+        col++;
 
-        grI = false;
-        gr--;
+    } else if (col > 0 && inc == false) {
 
-    } else if (gr == 0) {
-
-        grI = true;
-        gr++;
-
-    } else if (gr < 255 && grI == true) {
-
-        gr++;
-
-    } else if (gr > 0 && grI == false) {
-
-        gr--;
+        col--;
 
     }
 
-    if (bl == 255) {
-
-        blI = false;
-        bl--;
-
-    } else if (bl == 0) {
-
-        blI = true;
-        bl++;
-
-    } else if (bl < 255 && blI == true) {
-
-        bl++;
-
-    } else if (bl > 0 && blI == false) {
-
-        bl--;
-
-    }
+    return [col, inc];
 }
